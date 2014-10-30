@@ -1,4 +1,7 @@
 var _ = require('lodash');
+var mongo = require('mongodb');
+var BSON = mongo.BSONPure;
+var ObjectId = BSON.ObjectID;
 
 module.exports = function(db) {
 
@@ -14,7 +17,7 @@ module.exports = function(db) {
   // GETTERS ------------------------------------------------
 
   function getMultido(id, callback) {
-    multidos.findOne({ _id: id }, function(err, results) {
+    multidos.findOne({ _id: new ObjectId(id) }, function(err, results) {
       if(err) throw err;
       return callback(err, results);
     });
@@ -31,11 +34,11 @@ module.exports = function(db) {
   }
 
   function getMultidoAndLists(multidoId, callback) {
-    multidos.findOne({ _id: multidoId }, function(err, results) {
+    multidos.findOne({ _id: new ObjectId(multidoId) }, function(err, results) {
       if(err) throw err;
 
-      if(results[0]) {
-        var multido = results[0];
+      if(results) {
+        var multido = results;
         return getLists(multido.lists, function(err, lists) {
           if(err) throw err;
 
@@ -54,21 +57,20 @@ module.exports = function(db) {
   // MAKERS AND TAKERS ------------------------------------------------
 
   function createMultido(callback) {
-    multidos.insert(emptyMultido, { w: 1 }, function(err, multidos) {
+    multidos.insert(emptyMultido, { w: 1 }, function(err, multido) {
       if(err) throw err;
 
-      return callback(multidos[0]);
+      return callback(multido[0]);
     });
   }
 
   function createListInMultido(multidoId, callback) {
     lists.insert(emptyList, function(err, lists) {
       if(err) throw err;
-
       var newList = lists[0];
 
       // update the multido to contain a reference to this list
-      multidos.update({ _id: multidoId }, { $push: { lists: newList } }, function(err, multidos) {
+      multidos.update({ _id: new ObjectId(multidoId) }, { $push: { lists: newList._id } }, function(err, multido) {
         if(err) throw err;
 
         return callback(newList);
@@ -81,7 +83,7 @@ module.exports = function(db) {
       if(err) throw err;
 
       // update the multido to remove the reference to this list
-      multidos.update({ _id: multidoId }, { $pull: { lists: listId } }, function(err, multidos) {
+      multidos.update({ _id: new ObjectId(multidoId) }, { $pull: { lists: listId } }, function(err, multidos) {
         if(err) throw err;
 
         return callback(err);

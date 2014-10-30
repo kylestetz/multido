@@ -39,8 +39,11 @@ module.exports = function(app, io, db) {
 
   // go to a list
   app.get('/list/:id', function(req, res) {
-    multiBase.getMultidoAndLists( function(multido) {
-      return res.render('multido.html', { multido: multido });
+    if(!req.params.id) {
+      return res.redirect('/');
+    }
+    multiBase.getMultidoAndLists(req.params.id, function(err, multido) {
+      return res.render('multido.html', { multido: multido, assets: assets.getAssets() });
     });
   });
 
@@ -51,8 +54,11 @@ module.exports = function(app, io, db) {
       console.log('list:update');
     });
 
-    socket.on('list:create', function(){
-      console.log('list:create');
+    socket.on('list:create', function(data){
+      var multidoId = data.multidoId;
+      multiBase.createListInMultido(multidoId, function(list) {
+        socket.broadcast.emit('list:update', list);
+      });
     });
 
     // title change
