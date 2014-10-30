@@ -43,7 +43,7 @@ module.exports = function(app, io, db) {
       return res.redirect('/');
     }
     multiBase.getMultidoAndLists(req.params.id, function(err, multido) {
-      return res.render('multido.html', { multido: multido });
+      return res.render('multido.html', { multido: multido, assets: assets.getAssets() });
     });
   });
 
