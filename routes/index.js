@@ -31,7 +31,13 @@ module.exports = function(app, io, db) {
 
   // make a new list
   app.post('/new', function(req, res) {
-    multiBase.createMultido( function(multido) {
+    multiBase.createMultido( function(err, multido) {
+      // if we get an error, just have the frontend try again!
+      if(err) {
+        // 409 is "conflict"?? haha NEAT
+        res.statusCode = 409;
+        return res.json({ error: 'The database got confused. Try again!' });
+      }
       // frontend should redirect to list/:id
       return res.json(multido);
     });
@@ -50,20 +56,31 @@ module.exports = function(app, io, db) {
   // websockets!
   io.on('connection', function(socket) {
 
-    socket.on('list:update', function(list){
-      console.log('list:update');
-    });
-
     socket.on('list:create', function(data){
       var multidoId = data.multidoId;
-      multiBase.createListInMultido(multidoId, function(list) {
-        socket.broadcast.emit('list:update', list);
+      multiBase.createListInMultido(multidoId, function(err, list) {
+        io.sockets.emit('list:create', list);
+      });
+    });
+
+    socket.on('list:update', function(list){
+      multiBase.updateList(list, function(err, list) {
+        io.sockets.emit('list:update', list);
+      });
+    });
+
+    socket.on('list:destroy', function(data){
+      multiBase.removeListInMultido(data.multidoId, data.listId, function() {
+        // confirm destruction.
+        io.sockets.emit('list:destroy', data.listId);
       });
     });
 
     // title change
-    socket.on('multido:update', function(){
-      console.log('multido:update');
+    socket.on('multido:update', function(multido){
+      multiBase.updateMultido( function(err, multido) {
+        io.sockets.emit('multido:update', multido);
+      });
     });
 
   });

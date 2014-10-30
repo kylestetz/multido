@@ -38,5 +38,6 @@
   {% for asset in assets %}
     <script type="text/javascript" src="{{ asset }}"></script>
   {% endfor %}
+  {% block multidoScript %}{% endblock %}
 </body>
 </html>

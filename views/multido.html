@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
 
-  {% block todos %}
-    <ul class="md-list">
-      <li class="md-todo">First todo</li>
-      <li class="md-todo">Second todo</li>
-      <li class="md-todo">Third todo</li>
+{% block todos %}
+  <h3 class="md-title" data-md-title>{{ multido.title }}</h3>
+
+  {% for list in multido.lists %}
+    <ul class="md-list" data-md-list="{{ list._id }}">
+      {% for todo in list.todos %}
+        <li class="md-todo" data-md-todo>First todo</li>
+      {% endfor %}
+      <li class="md-todo new" contenteditable="true">+ New</li>
     </ul>
-  {% endblock %}
+  {% endfor %}
+{% endblock %}
+
+{% block multidoScript %}
+  <script>
+    window.multido = {{ multido | json | safe }};
+  </script>
+{% endblock %}
