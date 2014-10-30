@@ -1,0 +1,40 @@
+@import url(http://fonts.googleapis.com/css?family=Karla:700,400);
+
+*
+{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body, html
+{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+// body { overflow: auto;   }
+// html { overflow: hidden; }
+
+.transition(...) {
+  -webkit-transition: @arguments;
+  -moz-transition: @arguments;
+  -ms-transition: @arguments;
+  -o-transition: @arguments;
+  transition: @arguments;
+}
+
+// --------------------------- FONTS ---------------------------- //
+
+body
+{
+  font-family: Karla, Helvetica, sans-serif;
+  letter-spacing: 0.02em;
+  font-size: 18px;
+  line-height: 1.2em;
+}

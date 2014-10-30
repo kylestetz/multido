@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+var app = require('../app');
+
+app.set('port', process.env.PORT || 3000);
+app.set('env', 'development');
+
+var server = app.listen(app.get('port'), function() {
+  console.log('Running in production mode on port ' + server.address().port);
+});
