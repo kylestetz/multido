@@ -6,9 +6,9 @@ module.exports = function(db) {
   var multidos = db.collection('multidos');
   var lists    = db.collection('lists');
 
-  var emptyMultido = { lists: [], name: '' };
+  var emptyMultido = { lists: [], name: 'New Multido' };
   var emptyList = {
-    name: 'Kyle',
+    name: 'New List',
     todos: []
   };
 
@@ -63,7 +63,10 @@ module.exports = function(db) {
         return callback(err);
       }
 
-      return callback(err, multido[0]);
+      createListInMultido(newMultido._id, function(err, newList) {
+        newMultido.lists = newList;
+        return callback(err, newMultido);
+      });
     });
   }
 
