@@ -1,7 +1,5 @@
 var _ = require('lodash');
-var mongo = require('mongodb');
-var BSON = mongo.BSONPure;
-var ObjectId = BSON.ObjectID;
+var randy = require('randy');
 
 module.exports = function(db) {
 
@@ -17,7 +15,7 @@ module.exports = function(db) {
   // GETTERS ------------------------------------------------
 
   function getMultido(id, callback) {
-    multidos.findOne({ _id: new ObjectId(id) }, function(err, results) {
+    multidos.findOne({ _id: id }, function(err, results) {
       if(err) throw err;
       return callback(err, results);
     });
@@ -34,7 +32,7 @@ module.exports = function(db) {
   }
 
   function getMultidoAndLists(multidoId, callback) {
-    multidos.findOne({ _id: new ObjectId(multidoId) }, function(err, results) {
+    multidos.findOne({ _id: multidoId }, function(err, results) {
       if(err) throw err;
 
       if(results) {
@@ -57,23 +55,28 @@ module.exports = function(db) {
   // MAKERS AND TAKERS ------------------------------------------------
 
   function createMultido(callback) {
-    multidos.insert(emptyMultido, { w: 1 }, function(err, multido) {
-      if(err) throw err;
+    var newMultido = _.clone(emptyMultido);
+    newMultido._id = rando(6);
+    multidos.insert(newMultido, { w: 1 }, function(err, multido) {
+      if(err) {
+        console.error(err);
+        return callback(err);
+      }
 
-      return callback(multido[0]);
+      return callback(err, multido[0]);
     });
   }
 
   function createListInMultido(multidoId, callback) {
-    lists.insert(emptyList, function(err, lists) {
+    var newEmptyList = _.clone(emptyList);
+    newEmptyList._id = rando(16);
+    lists.insert(newEmptyList, function(err, lists) {
       if(err) throw err;
-      var newList = lists[0];
 
       // update the multido to contain a reference to this list
-      multidos.update({ _id: new ObjectId(multidoId) }, { $push: { lists: newList._id } }, function(err, multido) {
+      multidos.update({ _id: multidoId }, { $push: { lists: newEmptyList._id } }, function(err, multido) {
         if(err) throw err;
-
-        return callback(newList);
+        return callback(err, newEmptyList);
       });
     });
   }
@@ -83,7 +86,7 @@ module.exports = function(db) {
       if(err) throw err;
 
       // update the multido to remove the reference to this list
-      multidos.update({ _id: new ObjectId(multidoId) }, { $pull: { lists: listId } }, function(err, multidos) {
+      multidos.update({ _id: multidoId }, { $pull: { lists: listId } }, function(err, multidos) {
         if(err) throw err;
 
         return callback(err);
@@ -93,7 +96,7 @@ module.exports = function(db) {
 
   // UPDATERS ------------------------------------------------
 
-  function updateList(multidoId, list, callback) {
+  function updateList(list, callback) {
     lists.update({ _id: list._id }, list, function(err) {
       if(err) throw err;
 
@@ -121,3 +124,16 @@ module.exports = function(db) {
     updateList: updateList
   };
 };
+
+function rando(length) {
+  var id = '';
+  var i = 0;
+  for(i; i < (length || 6); i++) {
+    if( randy.choice([true, false]) ) {
+      id += randy.randInt(0, 9);
+    } else {
+      id += String.fromCharCode(randy.choice([97, 65]) + randy.randInt(0, 26));
+    }
+  }
+  return id;
+}

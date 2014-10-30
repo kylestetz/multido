@@ -30,6 +30,10 @@ var env = new nunjucks.Environment(
 );
 env.express(app);
 
+env.addFilter('json', function(data) {
+  return JSON.stringify(data);
+});
+
 // config
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(bodyParser.json());
@@ -77,14 +81,15 @@ function bundleAssets(cb) {
         console.error(err);
         return cb && callback(err);
       }
+      console.log('Recompiled assets.');
       return cb && cb(null);
     });
   });
 }
 
-// w.on('update', function(ids) {
-//   bundleAssets();
-// });
+w.on('update', function(ids) {
+  bundleAssets();
+});
 
 bundleAssets();
 

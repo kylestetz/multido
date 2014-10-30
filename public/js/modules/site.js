@@ -1,1 +1,2 @@
-var hi = 'hello';
+require('./multido.js');
+require('./todos.js');
