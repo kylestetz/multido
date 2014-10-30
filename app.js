@@ -1,5 +1,5 @@
+// junk
 var express = require('express');
-var http = require('http');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -7,11 +7,18 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 
+var MongoClient = require('mongodb').MongoClient;
+
+
+// b-ify
 var browserify = require('browserify');
 var watchify = require('watchify');
 var fs = require('fs');
 
+// app & sockets
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // view engine setup
 var env = new nunjucks.Environment(
@@ -23,6 +30,7 @@ var env = new nunjucks.Environment(
 );
 env.express(app);
 
+// config
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -30,8 +38,6 @@ app.use(cookieParser());
 app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
-
-require('./routes/index')(app);
 
 /// error handlers
 
@@ -82,6 +88,17 @@ function bundleAssets(cb) {
 
 bundleAssets();
 
+
+MongoClient.connect('mongodb://127.0.0.1:27017/multido', function(err, db) {
+  if(err) throw err;
+
+  require('./routes/index')(app, io, db);
+
+  http.listen(3000, function(){
+    console.log('listening on *:3000');
+  });
+
+});
 
 
 
