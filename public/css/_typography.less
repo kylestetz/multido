@@ -1,0 +1,35 @@
+// ---------------------------------------------------------------
+// Multido Typography
+// ---------------------------------------------------------------
+
+//The Basic Use of Lora
+.lora(@font-size: 18px)
+{
+  font-family: Lora, Georgia, serif;
+  letter-spacing: 0.02em;
+  font-size: @font-size;
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+//How Lora should be used in the header.
+.header-font()
+{
+  .lora(48px);
+  font-style: italic;
+}
+
+//The Basic use of Source Sans Pro
+.source-sans-pro(@font-size: 18px)
+{
+  font-family: "Source Sans Pro", Arial, serif;
+  letter-spacing: 0.02em;
+  font-size: @font-size;
+  line-height: (@font-size * 1.2);
+}
+
+//Source Sans Pro Applied to the body
+body
+{
+  .source-sans-pro();
+}

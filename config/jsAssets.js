@@ -6,6 +6,7 @@ module.exports = {
 
   vendorPrefix: '/js/vendor/',
   vendor: [
-    'jquery/dist/jquery.min.js'
+    'jquery/dist/jquery.min.js',
+    
   ]
 };

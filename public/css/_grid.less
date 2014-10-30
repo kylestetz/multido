@@ -1,0 +1,118 @@
+
+// ---------------------------------------------------------------
+// Mutlido Grid. Based on Semantic.gs
+// ---------------------------------------------------------------
+
+
+// Defaults which you can freely override
+// 4.16rem
+@column-width: 60;
+@gutter-width: 20;
+// @gutter-width: 1.2rem;
+@columns: 12;
+
+// Utility variable — you should never need to modify this
+@gridsystem-width: (@column-width*@columns) + (@gutter-width*@columns) * 1px;
+
+// Set @total-width to 100% for a fluid layout
+
+//64.4rem
+@total-width: 100%;
+
+@max-width: 1140px;
+@min-width: 960px;
+
+
+// Uncomment these two lines and the star-hack width/margin lines below to enable sub-pixel fix for IE6 & 7. See http://tylertate.com/blog/2012/01/05/subpixel-rounding.html
+// @min-width: 960;
+// @correction: 0.5 / @min-width * 100 * 1%;
+
+
+//////////
+// GRID //
+//////////
+
+body {
+  width: 100%;
+  .cf;
+}
+
+.content
+{
+  .md-row();
+  max-width: @max-width;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Let's set our inner width
+// .inner
+// {
+//   max-width: 1140px;
+//   margin: 0 auto;
+// }
+
+.md-row(@columns:@columns) {
+  .cf;
+  display: block;
+  width: @total-width*((@gutter-width + @gridsystem-width)/@gridsystem-width);
+  margin: 0 @total-width*(((@gutter-width*.5)/@gridsystem-width)*-1);
+  // *width: @total-width*((@gutter-width + @gridsystem-width)/@gridsystem-width)-@correction;
+  // *margin: 0 @total-width*(((@gutter-width*.5)/@gridsystem-width)*-1)-@correction;
+
+}
+.md-column(@x,@columns:@columns) {
+  display: inline;
+  float: left;
+  width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width);
+  margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width);
+  // *width: @total-width*((((@gutter-width+@column-width)*@x)-@gutter-width) / @gridsystem-width)-@correction;
+  // *margin: 0 @total-width*((@gutter-width*.5)/@gridsystem-width)-@correction;
+}
+.md-push(@offset:1) {
+  margin-left: @total-width*(((@gutter-width+@column-width)*@offset) / @gridsystem-width) + @total-width*((@gutter-width*.5)/@gridsystem-width);
+}
+.md-pull(@offset:1) {
+  margin-right: @total-width*(((@gutter-width+@column-width)*@offset) / @gridsystem-width) + @total-width*((@gutter-width*.5)/@gridsystem-width);
+}
+
+//////////////////////
+// COLUMN WRAPPERS //
+////////////////////
+
+.md-column-1{.md-column(1)}
+.md-column-2{.md-column(2)}
+.md-column-3{.md-column(3)}
+.md-column-4{.md-column(4)}
+.md-column-5{.md-column(5)}
+.md-column-6{.md-column(6)}
+.md-column-7{.md-column(7)}
+.md-column-8{.md-column(8)}
+.md-column-9{.md-column(9)}
+.md-column-10{.md-column(10)}
+.md-column-11{.md-column(11)}
+.md-column-12
+{
+  .md-column(12);
+  &:not(.md-column-12--tight){
+    width: 100%;
+    margin: 0;
+  }
+}
+
+///////////////////
+// PUSH WRAPPERS //
+///////////////////
+.md-push-1{.md-push(1)};
+.md-push-2{.md-push(2)};
+.md-push-3{.md-push(3)};
+.md-push-4{.md-push(4)};
+.md-push-5{.md-push(5)};
+.md-push-6{.md-push(6)};
+.md-push-7{.md-push(7)};
+.md-push-8{.md-push(8)};
+.md-push-9{.md-push(9)};
+.md-push-10{.md-push(10)};
+.md-push-11{.md-push(11)};
+.md-push-12{.md-push(12)};

@@ -1,0 +1,23 @@
+// ---------------------------------------------------------------
+// Multido Helpers
+// ---------------------------------------------------------------
+.transition(...) {
+  -webkit-transition: @arguments;
+  -moz-transition: @arguments;
+  -ms-transition: @arguments;
+  -o-transition: @arguments;
+  transition: @arguments;
+}
+
+.cf(){
+  *zoom: 1;
+  &:before,
+  &:after
+  {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+  &:after {
+      clear: both;
+  }
+}
