@@ -1,4 +1,7 @@
 var _ = require('lodash');
+var mongo = require('mongodb');
+var BSON = mongo.BSONPure;
+var ObjectId = BSON.ObjectID;
 
 module.exports = function(db) {
 
@@ -14,7 +17,7 @@ module.exports = function(db) {
   // GETTERS ------------------------------------------------
 
   function getMultido(id, callback) {
-    multidos.findOne({ _id: id }, function(err, results) {
+    multidos.findOne({ _id: new ObjectId(id) }, function(err, results) {
       if(err) throw err;
       return callback(err, results);
     });
@@ -31,11 +34,11 @@ module.exports = function(db) {
   }
 
   function getMultidoAndLists(multidoId, callback) {
-    multidos.findOne({ _id: multidoId }, function(err, results) {
+    multidos.findOne({ _id: new ObjectId(multidoId) }, function(err, results) {
       if(err) throw err;
 
-      if(results[0]) {
-        var multido = results[0];
+      if(results) {
+        var multido = results;
         return getLists(multido.lists, function(err, lists) {
           if(err) throw err;
 
