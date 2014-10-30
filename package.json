@@ -1,9 +1,9 @@
 {
-  "name": "portfolio",
+  "name": "multido",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js"
   },
   "dependencies": {
     "express": "~3.4.8",
@@ -17,6 +17,8 @@
     "lodash": "2.4.1",
     "watchify": "1.0.0",
     "browserify": "5.9.1",
-    "sentencer": "*"
+    "mongodb": "1.4.19",
+    "socket.io": "1.2.0",
+    "monk": "0.9.0"
   }
 }
