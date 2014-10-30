@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Lora:700,700italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Lora:700,700italic|Noto+Sans:700,400);
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -355,12 +355,11 @@ header:after {
   clear: both;
 }
 .header-wordmark {
-  font-family: Lora, Georgia, serif;
-  letter-spacing: 0.02em;
-  font-size: 48px;
+  font-family: 'Noto Sans', Helvetica, Arial, sans-serif;
+  font-size: 60px;
   line-height: 1.2;
   font-weight: bold;
-  font-style: italic;
+  font-weight: 700;
   color: #222222;
 }
 .md-list {
