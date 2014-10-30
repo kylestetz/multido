@@ -1,4 +1,156 @@
-@import url(http://fonts.googleapis.com/css?family=Karla:700,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Lora:700,700italic);
+body {
+  font-family: "Source Sans Pro", Arial, serif;
+  letter-spacing: 0.02em;
+  font-size: 18px;
+  line-height: 21.6px;
+}
+body {
+  width: 100%;
+  *zoom: 1;
+}
+body:before,
+body:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+body:after {
+  clear: both;
+}
+.content {
+  *zoom: 1;
+  display: block;
+  width: 102.08333333%;
+  margin: 0 -1.04166667%;
+  max-width: 1140px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.content:before,
+.content:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.content:after {
+  clear: both;
+}
+.md-column-1 {
+  display: inline;
+  float: left;
+  width: 6.25%;
+  margin: 0 1.04166667%;
+}
+.md-column-2 {
+  display: inline;
+  float: left;
+  width: 14.58333333%;
+  margin: 0 1.04166667%;
+}
+.md-column-3 {
+  display: inline;
+  float: left;
+  width: 22.91666667%;
+  margin: 0 1.04166667%;
+}
+.md-column-4 {
+  display: inline;
+  float: left;
+  width: 31.25%;
+  margin: 0 1.04166667%;
+}
+.md-column-5 {
+  display: inline;
+  float: left;
+  width: 39.58333333%;
+  margin: 0 1.04166667%;
+}
+.md-column-6 {
+  display: inline;
+  float: left;
+  width: 47.91666667%;
+  margin: 0 1.04166667%;
+}
+.md-column-7 {
+  display: inline;
+  float: left;
+  width: 56.25%;
+  margin: 0 1.04166667%;
+}
+.md-column-8 {
+  display: inline;
+  float: left;
+  width: 64.58333333%;
+  margin: 0 1.04166667%;
+}
+.md-column-9 {
+  display: inline;
+  float: left;
+  width: 72.91666667%;
+  margin: 0 1.04166667%;
+}
+.md-column-10 {
+  display: inline;
+  float: left;
+  width: 81.25%;
+  margin: 0 1.04166667%;
+}
+.md-column-11 {
+  display: inline;
+  float: left;
+  width: 89.58333333%;
+  margin: 0 1.04166667%;
+}
+.md-column-12 {
+  display: inline;
+  float: left;
+  width: 97.91666667%;
+  margin: 0 1.04166667%;
+}
+.md-column-12:not(.md-column-12--tight) {
+  width: 100%;
+  margin: 0;
+}
+.md-push-1 {
+  margin-left: 9.375%;
+}
+.md-push-2 {
+  margin-left: 17.70833333%;
+}
+.md-push-3 {
+  margin-left: 26.04166667%;
+}
+.md-push-4 {
+  margin-left: 34.375%;
+}
+.md-push-5 {
+  margin-left: 42.70833333%;
+}
+.md-push-6 {
+  margin-left: 51.04166667%;
+}
+.md-push-7 {
+  margin-left: 59.375%;
+}
+.md-push-8 {
+  margin-left: 67.70833333%;
+}
+.md-push-9 {
+  margin-left: 76.04166667%;
+}
+.md-push-10 {
+  margin-left: 84.375%;
+}
+.md-push-11 {
+  margin-left: 92.70833333%;
+}
+.md-push-12 {
+  margin-left: 101.04166667%;
+}
 * {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -14,9 +166,59 @@ html {
   padding: 0;
   height: 100%;
 }
-body {
-  font-family: Karla, Helvetica, sans-serif;
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.cf:after {
+  clear: both;
+}
+.cf {
+  *zoom: 1;
+}
+header {
+  *zoom: 1;
+  text-align: center;
+  background: #bbbbbb;
+}
+header:before,
+header:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+header:after {
+  clear: both;
+}
+.header-wordmark {
+  font-family: Lora, Georgia, serif;
   letter-spacing: 0.02em;
-  font-size: 18px;
-  line-height: 1.2em;
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: bold;
+  font-style: italic;
+}
+.md-list {
+  display: inline;
+  float: left;
+  width: 22.91666667%;
+  margin: 0 1.04166667%;
+  background: #57d943;
+}
+.list-count-1 .md-list:first-child {
+  margin-left: 38.54166667%;
+}
+.list-count-2 .md-list:first-child {
+  margin-left: 26.04166667%;
+}
+.list-count-3 .md-list:first-child {
+  margin-left: 13.54166667%;
+}
+footer {
+  text-align: center;
+  background: #bbbbbb;
 }
