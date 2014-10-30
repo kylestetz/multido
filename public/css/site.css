@@ -1,9 +1,165 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Lora:700,700italic);
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+html {
+  min-height: 100%;
+  height: 100%;
+}
 body {
   font-family: "Source Sans Pro", Arial, serif;
   letter-spacing: 0.02em;
   font-size: 18px;
   line-height: 21.6px;
+  color: #444444;
+}
+.md-icon {
+  text-decoration: none;
+}
+.md-icon:before {
+  font-family: "md-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
 }
 body {
   width: 100%;
@@ -28,6 +184,9 @@ body:after {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  min-height: 80vh;
 }
 .content:before,
 .content:after {
@@ -182,7 +341,8 @@ html {
 header {
   *zoom: 1;
   text-align: center;
-  background: #bbbbbb;
+  border-bottom: 1px solid #bbbbbb;
+  min-height: 10vh;
 }
 header:before,
 header:after {
@@ -201,13 +361,14 @@ header:after {
   line-height: 1.2;
   font-weight: bold;
   font-style: italic;
+  color: #222222;
 }
 .md-list {
   display: inline;
   float: left;
   width: 22.91666667%;
   margin: 0 1.04166667%;
-  background: #57d943;
+  border: 1px solid rgba(187, 187, 187, 0.5);
 }
 .list-count-1 .md-list:first-child {
   margin-left: 38.54166667%;
@@ -218,7 +379,23 @@ header:after {
 .list-count-3 .md-list:first-child {
   margin-left: 13.54166667%;
 }
+.md-list-add {
+  display: block;
+  text-align: center;
+  font-size: 48px;
+  cursor: pointer;
+  color: #444444;
+  -webkit-transition: opacity 0.1s ease;
+  -moz-transition: opacity 0.1s ease;
+  -ms-transition: opacity 0.1s ease;
+  -o-transition: opacity 0.1s ease;
+  transition: opacity 0.1s ease;
+}
+.md-list-add:hover {
+  opacity: .8;
+}
 footer {
   text-align: center;
-  background: #bbbbbb;
+  background: #2135a6;
+  min-height: 10vh;
 }

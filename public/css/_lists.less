@@ -4,7 +4,7 @@
 .md-list
 {
   .md-column(3);
-  background: @green;
+  border: 1px solid fadeout(@gray-light, 50%);
 }
 
 .list-count-1
@@ -27,5 +27,21 @@
   .md-list:first-child
   {
     .md-push(1.5);
+  }
+}
+
+
+// The Add list button
+.md-list-add
+{
+  display: block;
+  text-align: center;
+  font-size: 48px;
+  cursor: pointer;
+  color: @text;
+  .transition(opacity .1s ease);
+  &:hover
+  {
+    opacity: .8;
   }
 }

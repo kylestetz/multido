@@ -1,24 +1,7 @@
 {% extends 'base.html' %}
 
-{% block main %}
-  <header>
-    {% block header %}
-      <h1 class="header-wordmark">Multido</h1>
-    {% endblock %}
-  </header>
-
-  <div class="content list-count-1 row">
-    {% block todos %}
-      <ul class="md-list">
-        <span class="md-icons-plus">Hello</span>
-      </ul>
-    {% endblock %}
-  </div>
-
-  <footer>
-  {% block footer %}
-  &copy; 2014 <a href="http://punkave.com" target="blank">P'unk Avenue</a>
+  {% block todos %}
+    <ul class="md-list">
+      <a href="/multido" class="md-icon icon-plus md-list-add" data-add-list></a>
+    </ul>
   {% endblock %}
-  </footer>
-
-{% endblock  %}

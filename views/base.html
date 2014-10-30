@@ -15,6 +15,24 @@
 <body>
 
   {% block main %}
+    <header>
+      {% block header %}
+        <h1 class="header-wordmark">Multido</h1>
+      {% endblock %}
+    </header>
+
+    <div class="content list-count-1 row">
+      {% block todos %}
+
+      {% endblock %}
+    </div>
+
+    <footer>
+    {% block footer %}
+      &copy; 2014 <a href="http://punkave.com" target="blank">P'unk Avenue</a>
+    {% endblock %}
+    </footer>
+
   {% endblock %}
 
   {% for asset in assets %}
