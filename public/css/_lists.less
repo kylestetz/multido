@@ -3,15 +3,25 @@
 // ---------------------------------------------------------------
 .md-list
 {
-  .md-column(3);
-  border: 1px solid fadeout(@gray-light, 50%);
+  .md-column(4);
+  //border: 1px solid fadeout(@gray-light, 50%);
+}
+
+.md-list-title
+{
+  padding: .5rem;
+  .francois(24px);
+  color: @white;
+  text-align:center;
+  background: @blue;
+
 }
 
 .list-count-1
 {
   .md-list:first-child
   {
-    .md-push(4.5);
+    .md-push(4);
   }
 }
 
@@ -19,17 +29,9 @@
 {
   .md-list:first-child
   {
-    .md-push(3);
+    .md-push(2);
   }
 }
-.list-count-3
-{
-  .md-list:first-child
-  {
-    .md-push(1.5);
-  }
-}
-
 
 // The Add list button
 .md-list-add
