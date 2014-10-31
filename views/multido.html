@@ -2,15 +2,20 @@
 
 {% block todos %}
   <h3 class="md-title" data-md-title>{{ multido.name }}</h3>
-
-  {% for list in multido.lists %}
-    <ul class="md-list" data-md-list="{{ list._id }}">
-      {% for todo in list.todos %}
-        <li class="md-todo" data-md-todo>First todo</li>
-      {% endfor %}
-      <li class="md-todo new" contenteditable="true">+ New</li>
-    </ul>
-  {% endfor %}
+  <div class="md-lists list-count-{{multido.lists.length}}">
+    {% for list in multido.lists %}
+      <ul class="md-list" data-md-list="{{ list._id }}">
+        <li class="md-todo" data-md-todo>
+          <span data-md-todo-text>First todo</span>
+          <span data-md-todo-edit class="md-icon icon-pencil md-todo-edit"></span>
+        </li>
+        {% for todo in list.todos %}
+          <li class="md-todo" data-md-todo>First todo</li>
+        {% endfor %}
+        <li class="md-todo new" contenteditable="true">+ New</li>
+      </ul>
+    {% endfor %}
+  </div>
 {% endblock %}
 
 {% block multidoScript %}
