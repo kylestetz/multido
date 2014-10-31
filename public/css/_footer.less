@@ -3,12 +3,94 @@
 // ---------------------------------------------------------------
 footer
 {
+  position: relative;
   text-align: center;
-  background: @blue;
-  min-height: 10vh;
+  min-height: 30vh;
+  overflow: hidden;
+
 }
+
+.inner-footer
+{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  z-index: 10;
+  background:  @blue;
+  height: 10vh;
+  color: white;
+  line-height: 10vh;
+  a {color: white}
+}
+
 
 .pre-footer
 {
-  min-height: 1rem;
+  position:absolute;
+  z-index: ;
+  bottom: 8.5vh;
+  width: 100%;
+  min-height: 2rem;
+  min-width:110%;
+  margin-left: -5%;
+
+}
+
+//Because of this, we need to set body-overflow to hidden;
+body
+{
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.pre-footer--red
+{
+  background: @red;
+
+}
+.pre-footer--green
+{
+  background: @green;
+}
+.pre-footer--yellow
+{
+  background: @yellow;
+}
+.pre-footer--orange
+{
+  background: @orange;
+}
+
+
+.pre-footer--turn-1
+{
+  .transform(rotate(1deg));
+}
+.pre-footer--turn-2
+{
+  .transform(rotate(3deg));
+}
+.pre-footer--turn-3
+{
+  .transform(rotate(6deg));
+}
+.pre-footer--turn-4
+{
+  .transform(rotate(8deg));
+}
+.pre-footer--turn-5
+{
+  .transform(rotate(-2deg));
+}
+.pre-footer--turn-6
+{
+  .transform(rotate(-4deg));
+}
+.pre-footer--turn-7
+{
+  .transform(rotate(-7deg));
+}
+.pre-footer--turn-8
+{
+  .transform(rotate(-10deg));
 }

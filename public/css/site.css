@@ -186,7 +186,7 @@ body:after {
   margin-right: auto;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  min-height: 80vh;
+  min-height: 60vh;
 }
 .content:before,
 .content:after {
@@ -397,7 +397,102 @@ header:after {
   opacity: .8;
 }
 footer {
+  position: relative;
   text-align: center;
+  min-height: 30vh;
+  overflow: hidden;
+}
+.inner-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  z-index: 10;
   background: #3a305b;
-  min-height: 10vh;
+  height: 10vh;
+  color: white;
+  line-height: 10vh;
+}
+.inner-footer a {
+  color: #ffffff;
+}
+.pre-footer {
+  position: absolute;
+  z-index: ;
+  bottom: 8.5vh;
+  width: 100%;
+  min-height: 2rem;
+  min-width: 110%;
+  margin-left: -5%;
+}
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+.pre-footer--red {
+  background: #ff425b;
+}
+.pre-footer--green {
+  background: #a8dca4;
+}
+.pre-footer--yellow {
+  background: #ffffa4;
+}
+.pre-footer--orange {
+  background: #ea705e;
+}
+.pre-footer--turn-1 {
+  -webkit-transform: rotate(1deg);
+  -moz-transform: rotate(1deg);
+  -ms-transform: rotate(1deg);
+  -o-transform: rotate(1deg);
+  transform: rotate(1deg);
+}
+.pre-footer--turn-2 {
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+.pre-footer--turn-3 {
+  -webkit-transform: rotate(6deg);
+  -moz-transform: rotate(6deg);
+  -ms-transform: rotate(6deg);
+  -o-transform: rotate(6deg);
+  transform: rotate(6deg);
+}
+.pre-footer--turn-4 {
+  -webkit-transform: rotate(8deg);
+  -moz-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  -o-transform: rotate(8deg);
+  transform: rotate(8deg);
+}
+.pre-footer--turn-5 {
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  -o-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+.pre-footer--turn-6 {
+  -webkit-transform: rotate(-4deg);
+  -moz-transform: rotate(-4deg);
+  -ms-transform: rotate(-4deg);
+  -o-transform: rotate(-4deg);
+  transform: rotate(-4deg);
+}
+.pre-footer--turn-7 {
+  -webkit-transform: rotate(-7deg);
+  -moz-transform: rotate(-7deg);
+  -ms-transform: rotate(-7deg);
+  -o-transform: rotate(-7deg);
+  transform: rotate(-7deg);
+}
+.pre-footer--turn-8 {
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  transform: rotate(-10deg);
 }
