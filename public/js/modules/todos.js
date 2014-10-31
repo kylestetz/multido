@@ -16,4 +16,12 @@ socket.on('multido:update', function(data) {
   console.log('multido:update', data);
 });
 
-
+// todo title change
+$('body').on('keydown', '[data-md-list-title]', function(e) {
+  if(e.which == 13) {
+    $(this).blur();
+    e.preventDefault();
+    var newTitle = $(this).html();
+    // save the title
+  }
+});

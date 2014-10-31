@@ -4,6 +4,7 @@
   <h3 class="md-title" data-md-title>{{ multido.name }}</h3>
 
   {% for list in multido.lists %}
+    <div class="md-list-title" data-md-list-title contenteditable="true">{{ list.name }}</div>
     <ul class="md-list" data-md-list="{{ list._id }}">
       {% for todo in list.todos %}
         <li class="md-todo" data-md-todo>First todo</li>
