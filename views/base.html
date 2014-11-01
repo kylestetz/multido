@@ -8,9 +8,6 @@
   <link rel="stylesheet" href="/fonts/css/md-icons.css">
   <link rel="stylesheet" href="/fonts/css/animation.css"><!--[if IE 7]><link rel="stylesheet" href="css/md-icons-ie7.css"><![endif]-->
   <script src="/socket.io/socket.io.js"></script>
-  <script>
-    var socket = io();
-  </script>
 </head>
 <body>
 
@@ -46,10 +43,10 @@
 
 
   {% endblock %}
-
+  {% block multidoScript %}{% endblock %}
   {% for asset in assets %}
     <script type="text/javascript" src="{{ asset }}"></script>
   {% endfor %}
-  {% block multidoScript %}{% endblock %}
+
 </body>
 </html>

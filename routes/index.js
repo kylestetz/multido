@@ -1,25 +1,5 @@
 var assets = require('./assets');
 
-/*
-
-multido:
-{
-  lists: [ listIds ]
-}
-
-list:
-{
-  name: 'Kyle',
-  todos: [
-    {
-      title: '',
-      checked: '',
-    }
-  ]
-}
-
-*/
-
 module.exports = function(app, io, db) {
 
   var multiBase = require('./database-helpers.js')(db);
@@ -56,30 +36,41 @@ module.exports = function(app, io, db) {
   // websockets!
   io.on('connection', function(socket) {
 
+    var multidoId = '';
+
+    // join a room specific to this multido to
+    // prevent catching unrelated socket events.
+    socket.on('multido:join', function(data) {
+      multidoId = data.multidoId;
+      socket.join(multidoId);
+    });
+
+    // create a new list
     socket.on('list:create', function(data){
-      var multidoId = data.multidoId;
       multiBase.createListInMultido(multidoId, function(err, list) {
-        io.sockets.emit('list:create', list);
+        io.to(multidoId).emit('list:create', list);
       });
     });
 
+    // update an existing list (sends the entire list)
     socket.on('list:update', function(list){
       multiBase.updateList(list, function(err, list) {
-        io.sockets.emit('list:update', list);
+        io.to(multidoId).emit('list:update', list);
       });
     });
 
+    // destroy a list
     socket.on('list:destroy', function(data){
       multiBase.removeListInMultido(data.multidoId, data.listId, function() {
         // confirm destruction.
-        io.sockets.emit('list:destroy', data.listId);
+        io.to(multidoId).emit('list:destroy', data.listId);
       });
     });
 
-    // title change
+    // change the multido's metadata
     socket.on('multido:update', function(multido){
       multiBase.updateMultido( function(err, multido) {
-        io.sockets.emit('multido:update', multido);
+        io.to(multidoId).emit('multido:update', multido);
       });
     });
 

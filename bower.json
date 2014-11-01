@@ -20,6 +20,8 @@
   "directory": "js/vendor/",
 
   "dependencies": {
-    "jquery": "*"
+    "jquery": "2.1.1",
+    "ractive": "0.6.1",
+    "ractive-events-keys": "0.1.2"
   }
 }

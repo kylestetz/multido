@@ -411,7 +411,8 @@ header:after {
   cursor: text;
 }
 .md-todo-edit,
-.md-todo-add {
+.md-todo-add,
+.md-todo-trash {
   cursor: pointer;
 }
 footer {
