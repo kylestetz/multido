@@ -1,47 +1,41 @@
 {% extends 'base.html' %}
 
 {% block todos %}
-  {#<div class="md-lists list-count-{{multido.lists.length}}">
-    {% for list in multido.lists %}
-        <ul class="md-list" data-md-list="{{ list._id }}">
-        <div class="md-list-title" data-md-list-title contenteditable="true">{{ list.name }}</div>
-        <li class="md-todo" data-md-todo>
-          <span class="md-todo-text" data-md-todo-text>First todo</span>
-          <span data-md-todo-edit class="md-icon icon-pencil md-todo-edit"></span>
-        </li>
-        {% for todo in list.todos %}
-          <li class="md-todo" data-md-todo>First todo</li>
-        {% endfor %}
-        <li class="md-todo new " >
-          <span class="md-icon icon-plus md-todo-add"></span>
-          <span class="md-todo-text" contenteditable="true">New</span>
-        </li>
-      </ul>
+  <div class="todos">
+    {% for todo in multido.lists %}
+      <div class="todo-container" data-md-contains="{{ todo._id }}"></div>
     {% endfor %}
-  </div>#}
-  <div class="todos"></div>
+  </div>
+  <div class="md-icon icon-plus md-list-add" data-add-list></div>
+
   <script id="todo-template" type="text/template">
     {% raw %}
     <div class="md-list">
-      <div class="md-list-title" data-md-list-title contenteditable="true">{{ name }}</div>
+      <div class="md-list-title" data-md-list-title contenteditable="true" on-enter="name-change">{{ name }}</div>
       <ul class="" data-md-list="{{ _id }}" not-sortable='sort-items' data-sortable>
+
         {{#each todos :i}}
         <li class="md-todo" data-md-todo>
           <input type="checkbox" checked='{{checked}}' on-click="check" />
+
           {{#editing}}
-            <input class="md-todo-text" on-enter="done-editing-todo" value="{{text}}" />
+            <input class="md-todo-text" data-md-todo-text-input on-enter="done-editing-todo" value="{{text}}" />
           {{else}}
-            <span class="md-todo-text" data-md-todo-text>{{text}}</span>
+            <span class="md-todo-text {{#checked}}checked{{/checked}}" data-md-todo-text>{{text}}</span>
           {{/editing}}
-          <span data-md-todo-edit class="md-icon icon-pencil md-todo-edit" on-click="set('todos['+i+'].editing', true)"></span>
-          <span data-md-todo-delete class="md-icon icon-trash md-todo-trash" on-click="delete-todo"></span>
+
+          <div class="md-todo-controls">
+            <span data-md-todo-edit class="md-icon icon-pencil md-todo-edit" on-click="edit-todo"></span>
+            <span data-md-todo-delete class="md-icon icon-trash md-todo-trash" on-click="delete-todo"></span>
+          </div>
         </li>
         {{/each}}
 
-        <li class="md-todo new" >
-          <span class="md-icon icon-plus md-todo-add" on-click="add-todo"></span>
-        </li>
       </ul>
+      <div class="md-todo controls">
+        <span class="md-icon icon-plus md-todo-add" on-click="add-todo"></span>
+        <span class="md-icon md-todo-remove right" on-click="delete-list">&#10006;</span>
+      </div>
     </div>
     {% endraw %}
   </script>

@@ -29,6 +29,8 @@ module.exports = function(app, io, db) {
       return res.redirect('/');
     }
     multiBase.getMultidoAndLists(req.params.id, function(err, multido) {
+      // reverse the list so it's in the correct rendering order
+      multido.lists.reverse();
       return res.render('multido.html', { multido: multido, assets: assets.getAssets() });
     });
   });
@@ -55,25 +57,24 @@ module.exports = function(app, io, db) {
     // update an existing list (sends the entire list)
     socket.on('list:update', function(list){
       multiBase.updateList(list, function(err, list) {
-        io.to(multidoId).emit('list:update', list);
+        socket.broadcast.to(multidoId).emit('list:update', list);
       });
     });
 
     // destroy a list
-    socket.on('list:destroy', function(data){
-      multiBase.removeListInMultido(data.multidoId, data.listId, function() {
+    socket.on('list:destroy', function(listId){
+      multiBase.removeListInMultido(multidoId, listId, function() {
         // confirm destruction.
-        io.to(multidoId).emit('list:destroy', data.listId);
+        io.to(multidoId).emit('list:destroy', listId);
       });
     });
 
     // change the multido's metadata
     socket.on('multido:update', function(multido){
       multiBase.updateMultido( function(err, multido) {
-        io.to(multidoId).emit('multido:update', multido);
+        socket.broadcast.to(multidoId).emit('multido:update', multido);
       });
     });
-
   });
 
   app.use(function(req, res, next){

@@ -5,6 +5,7 @@
 {
   .md-column(4);
   //border: 1px solid fadeout(@gray-light, 50%);
+  margin-bottom: 1em;
 }
 
 .md-list-title
@@ -36,9 +37,14 @@
 // The Add list button
 .md-list-add
 {
-  display: block;
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  margin-left: 1em;
+
   text-align: center;
   font-size: 48px;
+
   cursor: pointer;
   color: @text;
   .transition(opacity .1s ease);

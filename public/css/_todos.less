@@ -3,14 +3,55 @@
 // ---------------------------------------------------------------
 .md-todo
 {
-  padding: 1.5rem;
+  padding: 1rem;
   border: 1px solid @gray-light;
+  border-top: none;
   cursor: move;
+
+  &.controls
+  {
+    cursor: default;
+    .md-icon
+    {
+      cursor: pointer;
+      &.right
+      {
+        float: right;
+      }
+    }
+  }
 }
 
 .md-todo-text
 {
+  display: inline-block;
+  vertical-align: top;
+  cursor: move;
+  max-width: 70%;
+
+  &.checked
+  {
+    text-decoration: line-through;
+  }
+}
+
+input.md-todo-text
+{
   cursor: text;
+  .source-code-pro();
+}
+
+.md-todo-controls
+{
+  display: inline-block;
+  vertical-align: top;
+  width: 18%;
+
+  // nudging the icons together a bit
+  .md-icon::before
+  {
+    width: 0.5em !important;
+  }
 }
 
 .md-todo-edit,
@@ -22,6 +63,6 @@
 
 .sortable-placeholder
 {
-  min-height: 3rem;
+  min-height: 3.45rem;
   border: dashed 3px @gray-light;
 }

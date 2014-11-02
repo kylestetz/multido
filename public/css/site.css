@@ -370,6 +370,7 @@ header:after {
   float: left;
   width: 31.25%;
   margin: 0 1.04166667%;
+  margin-bottom: 1em;
 }
 .md-list-title {
   padding: .5rem;
@@ -388,7 +389,10 @@ header:after {
   margin-left: 17.70833333%;
 }
 .md-list-add {
-  display: block;
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  margin-left: 1em;
   text-align: center;
   font-size: 48px;
   cursor: pointer;
@@ -403,12 +407,43 @@ header:after {
   opacity: .8;
 }
 .md-todo {
-  padding: 1.5rem;
+  padding: 1rem;
   border: 1px solid #dddddd;
+  border-top: none;
   cursor: move;
 }
+.md-todo.controls {
+  cursor: default;
+}
+.md-todo.controls .md-icon {
+  cursor: pointer;
+}
+.md-todo.controls .md-icon.right {
+  float: right;
+}
 .md-todo-text {
+  display: inline-block;
+  vertical-align: top;
+  cursor: move;
+  max-width: 70%;
+}
+.md-todo-text.checked {
+  text-decoration: line-through;
+}
+input.md-todo-text {
   cursor: text;
+  font-family: "Source Code Pro", 'Courier', mono;
+  letter-spacing: -0.5px;
+  font-size: 18px;
+  line-height: 21.6px;
+}
+.md-todo-controls {
+  display: inline-block;
+  vertical-align: top;
+  width: 18%;
+}
+.md-todo-controls .md-icon::before {
+  width: 0.5em !important;
 }
 .md-todo-edit,
 .md-todo-add,
@@ -416,7 +451,7 @@ header:after {
   cursor: pointer;
 }
 .sortable-placeholder {
-  min-height: 3rem;
+  min-height: 3.45rem;
   border: dashed 3px #dddddd;
 }
 footer {

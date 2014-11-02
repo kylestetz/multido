@@ -1,83 +1,106 @@
+// This file has the Todo class which manages its view
+// and any relevant events from the server.
+// usage: new Todo(dataFromServer);
 
 function rearrange(array, fromIndex, toIndex) {
   array.splice(toIndex, 0, array.splice(fromIndex, 1)[0] );
   return array;
 }
 
-socket.on('list:create', function(data) {
-  console.log('list:create', data);
-  window.lists.push(data);
-});
+var todoTemplate = $('#todo-template').html();
 
-socket.on('list:destroy', function(data) {
-  console.log('list:destroy', data);
-});
+function Todo(data) {
+  var self = this;
 
-socket.on('multido:update', function(data) {
-  console.log('multido:update', data);
-});
-
-// todo title change
-// $('body').on('keydown', '[data-md-list-title]', function(e) {
-//   if(e.which == 13) {
-//     $(this).blur();
-//     e.preventDefault();
-//     var newTitle = $(this).html();
-//     // save the title
-//   }
-// });
-
-window.todo = new Ractive({
-  el: '.todos',
-  template: $('#todo-template').html(),
-  data: window.multido.lists[0]
-});
-
-window.todo.on('check', function(e) {
-  socket.emit('list:update', window.todo.data);
-});
-
-window.todo.on('add-todo', function(e) {
-  window.todo.data.todos.push({ text: 'New Todo', checked: false });
-  socket.emit('list:update', window.todo.data);
-});
-
-window.todo.on('delete-todo', function(e) {
-  window.todo.data.todos.splice(e.index.i, 1);
-  socket.emit('list:update', window.todo.data);
-});
-
-window.todo.on('done-editing-todo', function(e) {
-  window.todo.set(e.keypath + '.text', e.node.value);
-  window.todo.set(e.keypath + '.editing', false);
-  // update!
-  socket.emit('list:update', window.todo.data);
-});
-
-
-// This is a little busted and turns out to be a necessary addition to
-// window.todo.on('sort-items', function (event) {
-//   if (event.move) event.move();
-//   //TODO: Figure out why the data is coming back all funky...
-//   //I'm using my function above to recalculate the array order.
-//   //I think that's what's making things weird...
-//   //I'm using event.target as the original index and the event.current as the new index.
-//   window.todo.set('todos', rearrange(window.todo.data.todos, $(event.target).index(), $(event.current).index()));
-//   socket.emit('list:update', window.todo.data);
-// });
-
-//Jut need to rebind this. Kyle: can you work this into something
-//that fits the module better?
-function bindSortable(){
-  $('[data-sortable]').sortable().bind('sortupdate', function(e, ui) {
-    window.todo.set('todos', rearrange(window.todo.data.todos, ui.item.index(), ui.oldindex));
-    socket.emit('list:update', window.todo.data);
+  self.todo = new Ractive({
+    el: '[data-md-contains="' + data._id + '"]',
+    template: todoTemplate,
+    data: data
   });
-};
-bindSortable()
 
-socket.on('list:update', function(data) {
-  window.todo.set('name', data.name);
-  window.todo.set('todos', data.todos);
+  // ====================================
+  // EVENTS FROM THE VIEW
+  // ====================================
+
+  self.todo.on('check', function(e) {
+    socket.emit('list:update', self.todo.data);
+  });
+
+  self.todo.on('add-todo', function(e) {
+    self.todo.data.todos.push({ text: 'New Todo', checked: false });
+    socket.emit('list:update', self.todo.data);
+  });
+
+  self.todo.on('delete-todo', function(e) {
+    self.todo.data.todos.splice(e.index.i, 1);
+    socket.emit('list:update', self.todo.data);
+  });
+
+  self.todo.on('edit-todo', function(e) {
+    self.todo.set(e.keypath + '.editing', true);
+    $getList().find('[data-md-todo-text-input]').focus().select();
+  });
+
+  self.todo.on('done-editing-todo', function(e) {
+    self.todo.set(e.keypath + '.text', e.node.value);
+    self.todo.set(e.keypath + '.editing', false);
+    // update!
+    socket.emit('list:update', self.todo.data);
+  });
+
+  self.todo.on('delete-list', function(e) {
+    socket.emit('list:destroy', self.todo.data._id);
+  });
+
+  self.todo.on('name-change', function(e) {
+    self.todo.set(e.keypath + '.name', e.node.innerHTML);
+    socket.emit('list:update', self.todo.data);
+    // stupid manual unfocus
+    $('<div contenteditable="true"></div>').appendTo('body').focus().remove();
+  });
+
+  function bindSortable(){
+    $getList()
+      .sortable()
+      .bind('sortupdate', function(e, ui) {
+        self.todo.set('todos', rearrange(self.todo.data.todos, ui.item.index(), ui.oldindex));
+        socket.emit('list:update', self.todo.data);
+
+        // the sortable container persists, so we don't need to re-bind the
+        // entire sortupdate method. we just need to tell the sortable
+        // plugin to "reload", which will rebind its children for us.
+        reloadSortable();
+      })
+    ;
+  }
+
+  function reloadSortable() {
+    $getList().sortable('reload');
+  }
+
+  function $getList() {
+    return $('[data-md-list="' + self.todo.data._id + '"]');
+  }
+
+  // ====================================
+  // EVENTS FROM THE SERVER
+  // ====================================
+
+  socket.on('list:update', function(data) {
+    // ignore todo updates that don't concern our dataset.
+    if(self.todo.data._id == data._id) {
+      self.todo.set('name', data.name);
+      self.todo.set('todos', data.todos);
+      reloadSortable();
+    }
+  });
+
+  // ====================================
+  // INITIALIZE
+  // ====================================
+
+  // init!
   bindSortable();
-});
+}
+
+module.exports = Todo;
