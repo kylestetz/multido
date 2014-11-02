@@ -1,10 +1,10 @@
-if (!Ractive.eventDefinitions.wrap) {
+if (!Ractive.events.wrap) {
   /**
    * Wrap outer methods to have reference to event definitions arguments.
    *
    * @param {Function} method Outer method to be wrapped.
    */
-  Ractive.eventDefinitions.wrap = function (method) {
+  Ractive.events.wrap = function (method) {
     return function (node, fire) {
       return method(node, fire);
     };
@@ -20,9 +20,9 @@ if (!Ractive.eventDefinitions.wrap) {
  * @author  Nijiko Yonskai
  * @copyright  2013
  */
-Ractive.eventDefinitions.sortable = function (node, fire) {
+Ractive.events.sortable = function (node, fire) {
   // References
-  var $self = Ractive.eventDefinitions.sortable;
+  var $self = Ractive.events.sortable;
   var $arguments = Array.prototype.slice.call(arguments, 0);
 
   // Allocation
@@ -48,7 +48,7 @@ Ractive.eventDefinitions.sortable = function (node, fire) {
  *
  * @type {Object}
  */
-Ractive.eventDefinitions.sortable.CLASSES = {
+Ractive.events.sortable.CLASSES = {
   CHILD: 'sortable-child',
   DRAGGING: 'sortable-dragging',
   OVER: 'sortable-over'
@@ -61,7 +61,7 @@ Ractive.eventDefinitions.sortable.CLASSES = {
  * @param  {Function} callback    Callback
  * @return {void}
  */
-Ractive.eventDefinitions.sortable.foreach = function (iterable, callback) {
+Ractive.events.sortable.foreach = function (iterable, callback) {
   if (iterable.length) Array.prototype.forEach.call(iterable, callback);
 };
 
@@ -71,7 +71,7 @@ Ractive.eventDefinitions.sortable.foreach = function (iterable, callback) {
  * @param  {Object} event Native event
  * @return {void}
  */
-Ractive.eventDefinitions.sortable.prevent = function (event) {
+Ractive.events.sortable.prevent = function (event) {
   if (event.stopPropagation) event.stopPropagation();
   if (event.preventDefault) event.preventDefault();
   event.returnValue = false;
@@ -82,10 +82,10 @@ Ractive.eventDefinitions.sortable.prevent = function (event) {
  *
  * @return {Function} Invoking this method returns drag object.
  */
-Ractive.eventDefinitions.sortable.Drag = Ractive.eventDefinitions.wrap(function (node, fire) {
-  var CLASSES = Ractive.eventDefinitions.sortable.CLASSES;
-  var foreach = Ractive.eventDefinitions.sortable.foreach;
-  var prevent = Ractive.eventDefinitions.sortable.prevent;
+Ractive.events.sortable.Drag = Ractive.events.wrap(function (node, fire) {
+  var CLASSES = Ractive.events.sortable.CLASSES;
+  var foreach = Ractive.events.sortable.foreach;
+  var prevent = Ractive.events.sortable.prevent;
 
   // Hipster Nerd Tip:
   // !! does a type coercion to boolean: http://bonsaiden.github.io/JavaScript-Garden/#types.casting
@@ -137,7 +137,7 @@ Ractive.eventDefinitions.sortable.Drag = Ractive.eventDefinitions.wrap(function 
    * @param  {Function} callback Method to be invoked after delegation.
    * @return {Function}          Event capture method.
    */
-  var Delegate = Ractive.eventDefinitions.wrap(function (callback) {
+  var Delegate = Ractive.events.wrap(function (callback) {
     return function (event) {
       var target = (TouchSupported && event.touches && event.touches[0]) || event.target;
       var context;
@@ -202,7 +202,6 @@ Ractive.eventDefinitions.sortable.Drag = Ractive.eventDefinitions.wrap(function 
           original: event,
           type: 'enter',
           move: function () {
-            console.log($this);
             Drag.move.next(Drag.current.element, $this);
           }
         });

@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Francois+One:400|Noto+Sans:700,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700,400italic|Francois+One:400|Noto+Sans:700,400);
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -132,8 +132,8 @@ html {
   height: 100%;
 }
 body {
-  font-family: "Source Sans Pro", Arial, serif;
-  letter-spacing: 0.02em;
+  font-family: "Source Code Pro", 'Courier', mono;
+  letter-spacing: -0.5px;
   font-size: 18px;
   line-height: 21.6px;
   color: #444444;
@@ -414,6 +414,10 @@ header:after {
 .md-todo-add,
 .md-todo-trash {
   cursor: pointer;
+}
+.sortable-placeholder {
+  min-height: 3rem;
+  border: dashed 3px #dddddd;
 }
 footer {
   position: relative;

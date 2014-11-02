@@ -1,4 +1,3 @@
-var newList = require('./newList');
-// require('./ractive.sortable');
+require('./ractive.sortable.js');
 require('./multido.js');
 require('./todos.js');

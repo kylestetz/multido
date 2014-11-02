@@ -1,3 +1,9 @@
+
+function rearrange(array, fromIndex, toIndex) {
+  array.splice(toIndex, 0, array.splice(fromIndex, 1)[0] );
+  return array;
+}
+
 socket.on('list:create', function(data) {
   console.log('list:create', data);
   window.lists.push(data);
@@ -48,11 +54,30 @@ window.todo.on('done-editing-todo', function(e) {
   socket.emit('list:update', window.todo.data);
 });
 
-window.todo.on('sort-items', function (event) {
-  if (event.move) event.move();
-});
+
+// This is a little busted and turns out to be a necessary addition to
+// window.todo.on('sort-items', function (event) {
+//   if (event.move) event.move();
+//   //TODO: Figure out why the data is coming back all funky...
+//   //I'm using my function above to recalculate the array order.
+//   //I think that's what's making things weird...
+//   //I'm using event.target as the original index and the event.current as the new index.
+//   window.todo.set('todos', rearrange(window.todo.data.todos, $(event.target).index(), $(event.current).index()));
+//   socket.emit('list:update', window.todo.data);
+// });
+
+//Jut need to rebind this. Kyle: can you work this into something
+//that fits the module better?
+function bindSortable(){
+  $('[data-sortable]').sortable().bind('sortupdate', function(e, ui) {
+    window.todo.set('todos', rearrange(window.todo.data.todos, ui.item.index(), ui.oldindex));
+    socket.emit('list:update', window.todo.data);
+  });
+};
+bindSortable()
 
 socket.on('list:update', function(data) {
   window.todo.set('name', data.name);
   window.todo.set('todos', data.todos);
+  bindSortable();
 });

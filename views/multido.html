@@ -22,26 +22,27 @@
   <div class="todos"></div>
   <script id="todo-template" type="text/template">
     {% raw %}
-    <ul class="md-list" data-md-list="{{ _id }}" proxy-sortable="sort-items">
+    <div class="md-list">
       <div class="md-list-title" data-md-list-title contenteditable="true">{{ name }}</div>
+      <ul class="" data-md-list="{{ _id }}" not-sortable='sort-items' data-sortable>
+        {{#each todos :i}}
+        <li class="md-todo" data-md-todo>
+          <input type="checkbox" checked='{{checked}}' on-click="check" />
+          {{#editing}}
+            <input class="md-todo-text" on-enter="done-editing-todo" value="{{text}}" />
+          {{else}}
+            <span class="md-todo-text" data-md-todo-text>{{text}}</span>
+          {{/editing}}
+          <span data-md-todo-edit class="md-icon icon-pencil md-todo-edit" on-click="set('todos['+i+'].editing', true)"></span>
+          <span data-md-todo-delete class="md-icon icon-trash md-todo-trash" on-click="delete-todo"></span>
+        </li>
+        {{/each}}
 
-      {{#each todos :i}}
-      <li class="md-todo" data-md-todo>
-        <input type="checkbox" checked='{{checked}}' on-click="check" />
-        {{#editing}}
-          <input class="md-todo-text" on-enter="done-editing-todo" value="{{text}}" />
-        {{else}}
-          <span class="md-todo-text" data-md-todo-text>{{text}}</span>
-        {{/editing}}
-        <span data-md-todo-edit class="md-icon icon-pencil md-todo-edit" on-click="set('todos['+i+'].editing', true)"></span>
-        <span data-md-todo-delete class="md-icon icon-trash md-todo-trash" on-click="delete-todo"></span>
-      </li>
-      {{/each}}
-
-      <li class="md-todo new" >
-        <span class="md-icon icon-plus md-todo-add" on-click="add-todo"></span>
-      </li>
-    </ul>
+        <li class="md-todo new" >
+          <span class="md-icon icon-plus md-todo-add" on-click="add-todo"></span>
+        </li>
+      </ul>
+    </div>
     {% endraw %}
   </script>
 {% endblock %}
