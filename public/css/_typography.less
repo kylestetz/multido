@@ -21,10 +21,19 @@
   color: @black;
 }
 
-//The Basic use of Source Sans Pro
+//The Basic use of Source Code Pro
 .source-code-pro(@font-size: 18px)
 {
   font-family: "Source Code Pro", 'Courier', mono;
+  letter-spacing: -.5px;
+  font-size: @font-size;
+  line-height: (@font-size * 1.2);
+}
+
+//The Basic use of Source Sans Pro
+.source-sans-pro(@font-size: 18px)
+{
+  font-family: "Source Sans Pro", 'Helvetica', 'Arial', sans-serif;
   letter-spacing: -.5px;
   font-size: @font-size;
   line-height: (@font-size * 1.2);

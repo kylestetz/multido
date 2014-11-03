@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700,400italic|Francois+One:400|Noto+Sans:700,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,700,400italic|Source+Sans+Pro:400,700,400italic|Francois+One:400|Noto+Sans:700,400);
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -376,11 +376,12 @@ header:after {
 }
 .md-list-title {
   padding: .5rem;
-  font-family: 'Francois One', Helvetica, Arial, sans-serif;
+  font-family: "Source Sans Pro", 'Helvetica', 'Arial', sans-serif;
+  letter-spacing: -0.5px;
   font-size: 24px;
-  line-height: 1.2;
-  font-weight: bold;
+  line-height: 28.8px;
   color: #ffffff;
+  font-weight: bold;
   text-align: center;
   background: #3a305b;
 }
@@ -438,7 +439,7 @@ header:after {
   display: inline-block;
   vertical-align: top;
   cursor: move;
-  max-width: 66%;
+  max-width: 75%;
 }
 .md-todo-text.checked {
   text-decoration: line-through;
@@ -453,7 +454,8 @@ input.md-todo-text {
 .md-todo-controls {
   display: inline-block;
   vertical-align: top;
-  width: 20%;
+  float: right;
+  width: 15%;
 }
 .md-todo-controls .md-icon::before {
   width: 0.5em !important;
@@ -469,6 +471,10 @@ input.md-todo-text {
 }
 footer {
   position: relative;
+  font-family: "Source Sans Pro", 'Helvetica', 'Arial', sans-serif;
+  letter-spacing: -0.5px;
+  font-size: 18px;
+  line-height: 21.6px;
   text-align: center;
   min-height: 30vh;
   overflow: hidden;
