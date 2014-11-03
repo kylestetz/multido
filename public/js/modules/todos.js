@@ -42,7 +42,7 @@ function Todo(data) {
   });
 
   self.todo.on('done-editing-todo', function(e) {
-    self.todo.set(e.keypath + '.text', e.node.value);
+    self.todo.set(e.keypath + '.text', e.context.text);
     self.todo.set(e.keypath + '.editing', false);
     // update!
     socket.emit('list:update', self.todo.data);

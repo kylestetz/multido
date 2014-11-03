@@ -24,7 +24,12 @@
           {{/editing}}
 
           <div class="md-todo-controls">
-            <span data-md-todo-edit class="md-icon icon-pencil md-todo-edit" on-click="edit-todo"></span>
+            {{#editing}}
+              <span data-md-todo-edit class="md-icon icon-floppy md-todo-edit" on-click="done-editing-todo"></span>
+            {{else}}
+              <span data-md-todo-edit class="md-icon icon-pencil md-todo-edit" on-click="edit-todo"></span>
+            {{/editing}}
+
             <span data-md-todo-delete class="md-icon icon-trash md-todo-trash" on-click="delete-todo"></span>
           </div>
         </li>

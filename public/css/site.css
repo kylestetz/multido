@@ -445,6 +445,9 @@ header:after {
   text-decoration: line-through;
 }
 input.md-todo-text {
+  margin-top: -4px;
+  margin-bottom: -4px;
+  width: 72%;
   cursor: text;
   font-family: "Source Code Pro", 'Courier', mono;
   letter-spacing: -0.5px;
