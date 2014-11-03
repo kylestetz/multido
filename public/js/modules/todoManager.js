@@ -12,10 +12,13 @@ function TodoManager() {
   socket.on('list:create', function(todoData) {
     self.$el.append('<div class="todo-container" data-md-contains="' + todoData._id + '"></div>');
     self.todos.push( new Todo(todoData) );
+    $('.md-list-add').attr('data-list-count', self.todos.length % 4);
   });
 
   socket.on('list:destroy', function(todoId) {
     self.remove(todoId);
+    self.$el.find('[data-md-contains="' + todoId + '"]').remove();
+    $('.md-list-add').attr('data-list-count', self.todos.length % 4);
   });
 
   socket.on('multido:update', function(data) {
@@ -25,6 +28,7 @@ function TodoManager() {
   $('[data-add-list]').on('click', function(e) {
     socket.emit('list:create');
   });
+
 
   self.remove = function(todoId) {
     var index = null;
@@ -39,6 +43,7 @@ function TodoManager() {
       self.todos.splice(index, 1);
     }
   };
+
 
   // go no further if there isn't data to use.
   // multidos start with one blank todo, but if it's
