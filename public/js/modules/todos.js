@@ -61,7 +61,9 @@ function Todo(data) {
 
   function bindSortable(){
     $getList()
-      .sortable()
+      .sortable({
+        connectWith: '.md-list-todos'
+      })
       .bind('sortupdate', function(e, ui) {
         self.todo.set('todos', rearrange(self.todo.data.todos, ui.item.index(), ui.oldindex));
         socket.emit('list:update', self.todo.data);
@@ -81,6 +83,8 @@ function Todo(data) {
   function $getList() {
     return $('[data-md-list="' + self.todo.data._id + '"]');
   }
+
+
 
   // ====================================
   // EVENTS FROM THE SERVER

@@ -11,7 +11,7 @@
     {% raw %}
     <div class="md-list">
       <div class="md-list-title" data-md-list-title contenteditable="true" on-enter="name-change">{{ name }}</div>
-      <ul class="" data-md-list="{{ _id }}" not-sortable='sort-items' data-sortable>
+      <ul class="md-list-todos" data-md-list="{{ _id }}" not-sortable='sort-items' data-sortable>
 
         {{#each todos :i}}
         <li class="md-todo" data-md-todo>
