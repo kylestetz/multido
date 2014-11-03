@@ -7,6 +7,7 @@
   border: 1px solid @gray-light;
   border-top: none;
   cursor: move;
+  background: @white;
 
   &.controls
   {
@@ -22,12 +23,17 @@
   }
 }
 
+// .md-todo.sortable-dragging
+// {
+//   .transform(rotateZ(45deg));
+// }
+
 .md-todo-text
 {
   display: inline-block;
   vertical-align: top;
   cursor: move;
-  max-width: 70%;
+  max-width: 66%;
 
   &.checked
   {
@@ -45,7 +51,7 @@ input.md-todo-text
 {
   display: inline-block;
   vertical-align: top;
-  width: 18%;
+  width: 20%;
 
   // nudging the icons together a bit
   .md-icon::before

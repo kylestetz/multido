@@ -1,11 +1,16 @@
 // ---------------------------------------------------------------
 // Multido Lists
 // ---------------------------------------------------------------
-.md-list
+.todo-container
 {
-  .md-column(4);
+  .md-column(3);
   //border: 1px solid fadeout(@gray-light, 50%);
   margin-bottom: 1em;
+}
+
+.todo-container:nth-child(4n+1)
+{
+  clear: both;
 }
 
 .md-list-title
@@ -17,20 +22,57 @@
   background: @blue;
 
 }
+//Special Colors Based on Order
+// .todo-container:nth-child(4n-3)
+// {
+//   .md-list-title
+//   {
+//     background: @blue;
+//   }
+// }
+// .todo-container:nth-child(4n-2)
+// {
+//   .md-list-title
+//   {
+//     background: @green;
+//   }
+// }
+// .todo-container:nth-child(4n-1)
+// {
+//   .md-list-title
+//   {
+//     background: @red;
+//   }
+// }
+// .todo-container:nth-child(4n)
+// {
+//   .md-list-title
+//   {
+//     background: @orange;
+//   }
+// }
 
-.list-count-1
+.md-list-count-1
 {
-  .md-list:first-child
+  .todo-container:first-child
   {
-    .md-push(4);
+    .md-push(4.5);
   }
 }
 
-.list-count-2
+.md-list-count-2
 {
-  .md-list:first-child
+  .todo-container:first-child
   {
-    .md-push(2);
+    .md-push(3);
+  }
+}
+
+.md-list-count-3
+{
+  .todo-container:first-child
+  {
+    .md-push(1.5);
   }
 }
 
@@ -39,11 +81,13 @@
 {
   display: inline-block;
   vertical-align: top;
+  //clear: right;
   height: 100%;
-  margin-left: 1em;
+  //margin-left: 1em;
+  margin-top: 3rem;
 
   text-align: center;
-  font-size: 48px;
+  font-size: 72px;
 
   cursor: pointer;
   color: @text;
@@ -52,4 +96,14 @@
   {
     opacity: .8;
   }
+  &[data-list-count="0"]
+  {
+    clear: both;
+  }
+  &.md-list-add--home
+  {
+    width: 100%;
+    text-align:center;
+  }
+
 }
