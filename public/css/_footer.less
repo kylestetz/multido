@@ -20,6 +20,7 @@ footer
   height: 10vh;
   color: white;
   line-height: 10vh;
+
   a {color: white}
 }
 
@@ -27,11 +28,11 @@ footer
 .pre-footer
 {
   position:absolute;
-  z-index: ;
-  bottom: -20px;
+  bottom: -35px;
   width: 100%;
   min-height: 8rem;
   min-width: 90%;
+  .transition(transform .15s);
   //margin-left: -5%;
 
 }
@@ -46,26 +47,42 @@ body
 .pre-footer--red
 {
   background: @red;
-  .transform(rotate(5deg));
+  .transform(rotate(2deg));
   margin-left: 1%;
+  &.shift
+  {
+    .transform(rotate(3deg));
+  }
 }
 .pre-footer--green
 {
   background: @green;
-  .transform(rotate(9deg));
+  .transform(rotate(4deg));
   margin-left: 3%;
+  &.shift
+  {
+    .transform(rotate(5deg));
+  }
 }
 .pre-footer--yellow
 {
   background: @yellow;
-  .transform(rotate(-7deg));
+  .transform(rotate(-3deg));
   margin-left: -5%;
+  &.shift
+  {
+    .transform(rotate(-4deg));
+  }
 }
 .pre-footer--orange
 {
   background: @orange;
-  .transform(rotate(-3deg));
+  .transform(rotate(-1deg));
   margin-left: -1%;
+  &.shift
+  {
+    .transform(rotate(-2deg));
+  }
 }
 
 //
