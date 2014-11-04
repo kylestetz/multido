@@ -435,11 +435,16 @@ header:after {
 .md-todo.controls .md-icon.right {
   float: right;
 }
+.md-todo.empty {
+  padding: 0.25em 0;
+  background-color: #f4f4f4;
+  cursor: default;
+}
 .md-todo-text {
   display: inline-block;
   vertical-align: top;
   cursor: move;
-  max-width: 75%;
+  max-width: 70%;
 }
 .md-todo-text.checked {
   text-decoration: line-through;
@@ -447,7 +452,7 @@ header:after {
 input.md-todo-text {
   margin-top: -4px;
   margin-bottom: -4px;
-  width: 72%;
+  width: 70%;
   cursor: text;
   font-family: "Source Code Pro", 'Courier', mono;
   letter-spacing: -0.5px;
@@ -458,7 +463,8 @@ input.md-todo-text {
   display: inline-block;
   vertical-align: top;
   float: right;
-  width: 15%;
+  text-align: right;
+  width: 20%;
 }
 .md-todo-controls .md-icon::before {
   width: 0.5em !important;
@@ -574,4 +580,29 @@ body {
   -ms-transform: rotate(-2deg);
   -o-transform: rotate(-2deg);
   transform: rotate(-2deg);
+}
+@media (max-width: 1023px) {
+  .todo-container {
+    display: inline;
+    float: left;
+    width: 31.25%;
+    margin: 0 1.04166667%;
+  }
+}
+@media (max-width: 800px) {
+  .todo-container {
+    display: inline;
+    float: left;
+    width: 47.91666667%;
+    margin: 0 1.04166667%;
+  }
+}
+@media (max-width: 500px) {
+  .todo-container {
+    display: inline;
+    float: left;
+    width: 97.91666667%;
+    margin: 0 1.04166667%;
+    margin-bottom: 1em;
+  }
 }

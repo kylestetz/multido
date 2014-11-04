@@ -64,6 +64,7 @@ function Todo(data) {
   function bindSortable(){
     $getList()
       .sortable({
+        items: '.md-todo:not(.empty)',
         connectWith: '.md-list-todos'
       })
       .bind('sortupdate', function(e, ui) {
