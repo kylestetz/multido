@@ -65,7 +65,31 @@ function Todo(data) {
         connectWith: '.md-list-todos'
       })
       .bind('sortupdate', function(e, ui) {
-        self.todo.set('todos', rearrange(self.todo.data.todos, ui.item.index(), ui.oldindex));
+        var oldIndex = ui.oldindex;
+        if(ui.startparent[0] == ui.endparent[0]) {
+          self.todo.set('todos', rearrange(self.todo.data.todos, ui.item.index(), ui.oldindex));
+        } else {
+          // two lists were involved!
+
+          // take it out of the first list...
+          var startListId = $(ui.startparent[0]).attr('data-md-list');
+          var startList = window.todoManager.getList(startListId);
+          var targetListId = $(ui.endparent[0]).attr('data-md-list');
+
+          var indexInNewList = ui.item.index();
+
+          // get the item and remove it from the startList todo array
+          var dislodgedTodo = startList.todo.data.todos.splice(oldIndex, 1)[0];
+          startList.todo.set('todos', startList.todo.data.todos);
+
+          // and push it into the second list.
+          self.todo.data.todos.splice(indexInNewList, 0, dislodgedTodo);
+          self.todo.set('todos', self.todo.data.todos);
+
+          socket.emit('list:update', startList.todo.data);
+        }
+
+
         socket.emit('list:update', self.todo.data);
 
         // the sortable container persists, so we don't need to re-bind the

@@ -38,10 +38,21 @@ function TodoManager() {
         break;
       }
     }
-    if(index) {
+    if(index !== null) {
       self.todos[index].todo.teardown();
       self.todos.splice(index, 1);
     }
+  };
+
+  self.getList = function(id) {
+    var index = null;
+    for(var i = 0; i < self.todos.length; i++) {
+      if(self.todos[i].todo.data._id == id) {
+        index = i;
+        break;
+      }
+    }
+    return self.todos[index];
   };
 
 
