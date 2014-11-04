@@ -28,11 +28,13 @@ function Todo(data) {
 
   self.todo.on('add-todo', function(e) {
     self.todo.data.todos.push({ text: 'New Todo', checked: false });
+    reloadSortable();
     socket.emit('list:update', self.todo.data);
   });
 
   self.todo.on('delete-todo', function(e) {
     self.todo.data.todos.splice(e.index.i, 1);
+    reloadSortable();
     socket.emit('list:update', self.todo.data);
   });
 
