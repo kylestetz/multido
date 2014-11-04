@@ -84,6 +84,7 @@ function Todo(data) {
           // get the item and remove it from the startList todo array
           var dislodgedTodo = startList.todo.data.todos.splice(oldIndex, 1)[0];
           startList.todo.set('todos', startList.todo.data.todos);
+          startList.reloadSortable();
 
           // and push it into the second list.
           self.todo.data.todos.splice(indexInNewList, 0, dislodgedTodo);
@@ -106,6 +107,8 @@ function Todo(data) {
   function reloadSortable() {
     $getList().sortable('reload');
   }
+
+  self.reloadSortable = reloadSortable;
 
   function $getList() {
     return $('[data-md-list="' + self.todo.data._id + '"]');
