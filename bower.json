@@ -23,6 +23,7 @@
   "dependencies": {
     "jquery": "2.1.1",
     "html.sortable": "0.1.6",
+    "jquery-autosize": "1.18.14",
     "ractive": "0.6.1",
     "ractive-events-keys": "0.1.2"
   }

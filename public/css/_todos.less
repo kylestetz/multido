@@ -4,11 +4,15 @@
 .md-todo
 {
   padding: 1rem;
+  margin-top: .15rem;
+  margin-bottom: .15rem;
+  max-width: 100%;
   border: 1px solid @gray-light;
-  border-top: none;
+  //border-top: none;
+  border-radius: 2px;
   cursor: move;
   background: @white;
-
+  .transition(transform .3s);
   &.controls
   {
     cursor: default;
@@ -24,9 +28,15 @@
 
   &.empty
   {
-    padding: 0.25em 0;
-    background-color: #f4f4f4;
+    padding: .5em 0;
+    background-color: @gray-background;
+    border: none;
     cursor: default;
+  }
+  &.editing
+  {
+
+    //box-shadow: 0 0 15px 1px @gray-dark;
   }
 }
 
@@ -34,6 +44,28 @@
 // {
 //   .transform(rotateZ(45deg));
 // }
+
+.md-todo-checkbox input
+{
+  visibility: hidden;
+  position: absolute;
+}
+.md-todo-checkbox
+{
+  display: inline-block;
+  width: 10%;
+  font-size: 1.5rem;
+  color: @gray-dark;
+  .md-icon
+  {
+    text-align: left;
+    &:before
+    {
+      margin-left: 0;
+    }
+  }
+}
+
 
 .md-todo-text
 {
@@ -48,13 +80,19 @@
   }
 }
 
-input.md-todo-text
+textarea.md-todo-text
 {
-  margin-top: -4px;
-  margin-bottom: -4px;
+  //margin-top: -4px;
+  //margin-bottom: -4px;
+  padding: 0;
   width: 70%;
   cursor: text;
-  .source-code-pro();
+  .karla();
+  color: darken(@text, 10%);
+  background: none;
+  resize: none;
+  outline: none;
+  border: none;
 }
 
 .md-todo-controls
@@ -63,7 +101,7 @@ input.md-todo-text
   vertical-align: top;
   float: right;
   text-align: right;
-  width: 20%;
+  width: 18%;
 
   // nudging the icons together a bit
   .md-icon::before
@@ -82,5 +120,10 @@ input.md-todo-text
 .sortable-placeholder
 {
   min-height: 3.45rem;
-  border: dashed 3px @gray-light;
+  border: dashed 3px darken(@gray-background, 6%);
+}
+.sortable-dragging
+{
+  //background: red;
+  transform: scale(1.1);
 }

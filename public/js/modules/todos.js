@@ -40,7 +40,8 @@ function Todo(data) {
 
   self.todo.on('edit-todo', function(e) {
     self.todo.set(e.keypath + '.editing', true);
-    $getList().find('[data-md-todo-text-input]').focus().select();
+    $('[data-md-todo-text-input]').autosize();
+    $getList().find('[data-md-todo-text-input]').focus();
   });
 
   self.todo.on('done-editing-todo', function(e) {

@@ -10,15 +10,21 @@
   <script id="todo-template" type="text/template">
     {% raw %}
     <div class="md-list">
-      <div class="md-list-title" data-md-list-title contenteditable="true" on-enter="name-change">{{ name }}</div>
+      <div class="md-list-title-wrapper" >
+        <span class="md-icon icon-plus md-list-control md-todo-add left" on-click="add-todo"></span>
+        <h3 class="md-list-title" data-md-list-title contenteditable="true" on-enter="name-change">{{ name }}</h3>
+        <span class="md-icon icon-trash md-list-control md-list-remove right" on-click="delete-list"></span>
+      </div>
       <ul class="md-list-todos" data-md-list="{{ _id }}" not-sortable='sort-items' data-sortable>
 
         {{#each todos :i}}
-        <li class="md-todo" data-md-todo>
-          <input type="checkbox" checked='{{checked}}' on-click="check" />
-
+        <li class="md-todo {{#editing}}editing{{/editing}}" data-md-todo>
+          <label class="md-todo-checkbox">
+            <input type="checkbox" checked='{{checked}}' on-click="check" />
+            <span class="md-icon {{#checked}}icon-ok-squared{{else}}icon-check-empty{{/checked}}"></span>
+          </label>
           {{#editing}}
-            <input class="md-todo-text" data-md-todo-text-input on-enter="done-editing-todo" value="{{text}}" />
+            <textarea class="md-todo-text" data-md-todo-text-input on-enter="done-editing-todo" value="{{text}}"></textarea>
           {{else}}
             <span class="md-todo-text {{#checked}}checked{{/checked}}" data-md-todo-text>{{text}}</span>
           {{/editing}}
@@ -39,10 +45,6 @@
         {{/todos}}
 
       </ul>
-      <div class="md-todo controls">
-        <span class="md-icon icon-plus md-todo-add" on-click="add-todo"></span>
-        <span class="md-icon md-todo-remove right" on-click="delete-list">&#10006;</span>
-      </div>
     </div>
     {% endraw %}
   </script>

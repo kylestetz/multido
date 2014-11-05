@@ -13,14 +13,55 @@
   clear: both;
 }
 
+.md-list-title-wrapper
+{
+  position: relative;
+  padding: .5rem;
+  //.source-sans-pro(24px);
+  color: @white;
+  //font-weight: bold;
+  //text-align:center;
+  background: @blue;
+}
+
 .md-list-title
 {
-  padding: .5rem;
+//  position: relative;
+  //padding: .5rem;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
   .source-sans-pro(24px);
   color: @white;
   font-weight: bold;
   text-align:center;
-  background: @blue;
+  //background: @blue;
+
+}
+
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus{
+border:none;
+outline:none;
+}
+
+.md-list-control
+{
+  position: absolute;
+  width: 5%;
+  top:.8rem;
+  left: 1rem;
+  cursor: pointer;
+  &:before
+  {
+    font-size: 1rem;
+    color: @white;
+  }
+  &.right
+  {
+    left: initial;
+    right: 1rem;
+  }
 
 }
 //Special Colors Based on Order
