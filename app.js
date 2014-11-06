@@ -61,13 +61,13 @@ if (app.get('env') === 'development') {
 // ===================================================================
 
 var b = browserify({ cache: {}, packageCache: {}, fullPaths: true });
-var w = watchify(b, { 'opts.basedir': './public/js/modules/' });
+// var w = watchify(b, { 'opts.basedir': './public/js/modules/' });
 // add our master _site file
-w.add('./public/js/modules/site.js');
+b.add('./public/js/modules/site.js');
 // create the bundled file
 
 function bundleAssets(cb) {
-  w.bundle( function(err, output) {
+  b.bundle( function(err, output) {
     if(err) {
       console.error('There was an issue running browserify!');
       console.error(err);
@@ -87,9 +87,9 @@ function bundleAssets(cb) {
   });
 }
 
-w.on('update', function(ids) {
-  bundleAssets();
-});
+// b.on('update', function(ids) {
+//   bundleAssets();
+// });
 
 bundleAssets();
 
