@@ -475,6 +475,10 @@ header:after {
   border: none;
   cursor: default;
 }
+.md-todo:hover .md-todo-controls,
+.md-todo.editing .md-todo-controls {
+  opacity: 1;
+}
 .md-todo-checkbox input {
   visibility: hidden;
   position: absolute;
@@ -519,6 +523,12 @@ textarea.md-todo-text {
   float: right;
   text-align: right;
   width: 18%;
+  opacity: 0;
+  -webkit-transition: opacity 0.07s;
+  -moz-transition: opacity 0.07s;
+  -ms-transition: opacity 0.07s;
+  -o-transition: opacity 0.07s;
+  transition: opacity 0.07s;
 }
 .md-todo-controls .md-icon::before {
   width: 0.5em !important;

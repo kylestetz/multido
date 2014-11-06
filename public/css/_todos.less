@@ -38,6 +38,14 @@
 
     //box-shadow: 0 0 15px 1px @gray-dark;
   }
+
+  &:hover, &.editing
+  {
+    .md-todo-controls
+    {
+      opacity: 1;
+    }
+  }
 }
 
 // .md-todo.sortable-dragging
@@ -102,6 +110,15 @@ textarea.md-todo-text
   float: right;
   text-align: right;
   width: 18%;
+
+  opacity: 0;
+
+  @time: 0.07s;
+  -webkit-transition: opacity @time;
+  -moz-transition: opacity @time;
+  -ms-transition: opacity @time;
+  -o-transition: opacity @time;
+  transition: opacity @time;
 
   // nudging the icons together a bit
   .md-icon::before
