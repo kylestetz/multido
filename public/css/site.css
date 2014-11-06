@@ -475,6 +475,9 @@ header:after {
   border: none;
   cursor: default;
 }
+.md-todo.add-todo {
+  padding-bottom: 0;
+}
 .md-todo:hover .md-todo-controls,
 .md-todo.editing .md-todo-controls {
   opacity: 1;

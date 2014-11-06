@@ -27,7 +27,8 @@ function Todo(data) {
   });
 
   self.todo.on('add-todo', function(e) {
-    self.todo.data.todos.push({ text: 'New Todo', checked: false });
+    self.todo.data.todos.push({ text: e.context.text, checked: false });
+    $(e.node).val('');
     reloadSortable();
     socket.emit('list:update', self.todo.data);
   });
