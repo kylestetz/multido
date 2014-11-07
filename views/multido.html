@@ -15,10 +15,11 @@
         <h3 class="md-list-title" data-md-list-title contenteditable="true" on-enter="name-change">{{ name }}</h3>
         <span class="md-icon icon-trash md-list-control md-list-remove right" on-click="delete-list"></span>
       </div>
+      <div class="md-todo add-todo" data-md-add-todo >
+        <textarea class="md-todo-text" data-md-todo-text-input on-enter="add-todo" value="{{text}}" placeholder="Add a todo and hit enter"></textarea>
+      </div>
       <ul class="md-list-todos" data-md-list="{{ _id }}" not-sortable='sort-items' data-sortable>
-        <li class="md-todo add-todo" data-md-add-todo >
-          <textarea class="md-todo-text" data-md-todo-text-input on-enter="add-todo" value="{{text}}" placeholder="Add a todo and hit enter"></textarea>
-        </li>
+
         {{#each todos :i}}
         <li class="md-todo {{#editing}}editing{{/editing}}" data-md-todo>
           <label class="md-todo-checkbox">
