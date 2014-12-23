@@ -2,24 +2,17 @@
 // Multido Typography
 // ---------------------------------------------------------------
 
-//The Basic Use of Lora
-.francois(@font-size: 18px)
+//The Basic Use of Hammersmith
+.hammersmith(@font-size: 18px)
 {
-  font-family: 'Francois One', Helvetica, Arial, sans-serif;
+  font-family: 'Hammersmith One', Helvetica, Arial, sans-serif;
   //letter-spacing: 0.02em;
   font-size: @font-size;
   line-height: 1.2;
+  letter-spacing: 1px;
   font-weight: bold;
 }
 
-//How Lora should be used in the header.
-.header-font()
-{
-  .francois(30px);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: @black;
-}
 
 //The Basic use of Source Code Pro
 .karla(@font-size: 18px)
@@ -29,19 +22,11 @@
   line-height: (@font-size * 1.2);
 }
 
-//The Basic use of Source Sans Pro
-.source-sans-pro(@font-size: 18px)
-{
-  font-family: "Source Sans Pro", 'Helvetica', 'Arial', sans-serif;
-  font-size: @font-size;
-  line-height: (@font-size * 1.2);
-}
-
 //Source Sans Pro Applied to the body
 body
 {
   .karla();
-  color: @text;
+  color: @gray;
 }
 
 //Setting up Icons

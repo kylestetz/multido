@@ -9,6 +9,11 @@ module.exports = function(app, io, db) {
     return res.render('index.html', { assets: assets.getAssets() });
   });
 
+  // styleguide
+  app.get('/styleguide', function(req, res) {
+    return res.render('styleguide.html', { assets: assets.getAssets() });
+  });
+
   // make a new list
   app.post('/new', function(req, res) {
     multiBase.createMultido( function(err, multido) {

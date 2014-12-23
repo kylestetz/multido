@@ -6,6 +6,15 @@
   .md-column(3);
   //border: 1px solid fadeout(@gray-light, 50%);
   margin-bottom: 1em;
+  @media (max-width: 1023px) {
+    .md-column(4);
+  }
+  @media (max-width: 800px) {
+    .md-column(6);
+  }
+  @media (max-width: 500px) {
+    .md-column(12);
+  }
 }
 
 .todo-container:nth-child(4n+1)
@@ -17,7 +26,6 @@
 {
   position: relative;
   padding: .5rem;
-  //.source-sans-pro(24px);
   color: @white;
   //font-weight: bold;
   //text-align:center;
@@ -31,7 +39,7 @@
   width: 75%;
   margin-left: auto;
   margin-right: auto;
-  .source-sans-pro(24px);
+  .karla(24px);
   color: @white;
   font-weight: bold;
   text-align:center;

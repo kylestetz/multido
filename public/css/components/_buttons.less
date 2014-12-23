@@ -1,0 +1,25 @@
+.button
+{
+  display: inline-block;
+  padding: 8px 10px 5px 12px;
+  border-radius: 2px;
+  .hammersmith(20);
+  text-decoration: none;
+  text-transform: uppercase;
+
+}
+.button-color(@bg){
+  background: @bg;
+  color: @off-white;
+  box-shadow: 1px 1px 0px 1px lighten(@gray, 50%);
+}
+.button-color(@bg) when (@bg = @yellow){
+  color: @gray;
+}
+.button-color(@bg) when (@bg = @red){
+  box-shadow: 1px 1px 0px 1px @red-highlight;
+}
+
+.button--blue { .button-color(@blue) };
+.button--red { .button-color(@red) };
+.button--yellow { .button-color(@yellow) };
