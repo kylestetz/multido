@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 .todo-container
 {
-  .md-column(3);
+  .md-column(4);
   //border: 1px solid fadeout(@gray-light, 50%);
   margin-bottom: 1em;
   @media (max-width: 1023px) {
@@ -17,7 +17,7 @@
   }
 }
 
-.todo-container:nth-child(4n+1)
+.todo-container:nth-child(3n+1)
 {
   clear: both;
 }
@@ -25,36 +25,47 @@
 .md-list-title-wrapper
 {
   position: relative;
-  padding: .5rem;
-  color: @white;
+
+  color: @text;
   //font-weight: bold;
   //text-align:center;
-  background: @blue;
+  //background: @blue;
+  &:hover
+  {
+    .md-list-control {display: block;}
+  }
 }
 
 .md-list-title
 {
 //  position: relative;
   //padding: .5rem;
-  width: 75%;
+  padding: .5rem;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: .5rem;
   .karla(24px);
-  color: @white;
+  color: @text;
   font-weight: bold;
   text-align:center;
   //background: @blue;
-
+  .transition(background, .3s);
 }
 
 [contenteditable="true"]:active,
 [contenteditable="true"]:focus{
-border:none;
-outline:none;
+  color: lighten(@text, 15%);
+  padding: .45rem .5rem .5rem;
+  border: 1px solid @gray-light;
+  background: lighten(@off-white, 5%);
+  outline:none;
+  margin-bottom: .425rem;
 }
 
 .md-list-control
 {
+  display: none;
   position: absolute;
   width: 5%;
   top:.8rem;
@@ -63,7 +74,7 @@ outline:none;
   &:before
   {
     font-size: 1rem;
-    color: @white;
+    color: @text;
   }
   &.right
   {
@@ -137,15 +148,11 @@ outline:none;
   margin-top: 3rem;
 
   text-align: center;
-  font-size: 72px;
+  //font-size: 72px;
 
   cursor: pointer;
   color: @text;
-  .transition(opacity .1s ease);
-  &:hover
-  {
-    opacity: .8;
-  }
+
   &[data-list-count="0"]
   {
     clear: both;

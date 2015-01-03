@@ -5,13 +5,15 @@
 {
   padding: 1rem;
   margin-top: .15rem;
-  margin-bottom: .15rem;
+  margin-bottom: .3rem;
   max-width: 100%;
   border: 1px solid @gray-light;
   //border-top: none;
   border-radius: 2px;
   cursor: move;
   background: @white;
+  box-shadow: 1px 1px 0px 1px lighten(@gray, 50%);
+
   .transition(transform .3s);
   &.controls
   {
@@ -29,9 +31,11 @@
   &.empty
   {
     padding: .5em 0;
-    background-color: @gray-background;
+    background-color: @off-white;
     border: none;
     cursor: default;
+    box-shadow: none;
+
   }
   &.editing
   {

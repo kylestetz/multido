@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Karla:400,700,400italic|Hammersmith+One:400);
+@import url(http://fonts.googleapis.com/css?family=Karla:400,700,400italic|PT+Sans+Caption:400,700,400italic|Hammersmith+One:400);
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -194,12 +194,12 @@ html {
   bottom: 0;
   width: 100%;
   height: 10em;
-  background-color: rgba(255, 255, 255, 0);
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(#f8fafa));
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), #f8fafa);
-  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0), #f8fafa);
-  background: -ms-linear-gradient(top, rgba(255, 255, 255, 0), #f8fafa);
-  background: -o-linear-gradient(top, rgba(255, 255, 255, 0), #f8fafa);
+  background-color: rgba(248, 250, 250, 0);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(248, 250, 250, 0)), to(#f8fafa));
+  background: -webkit-linear-gradient(top, rgba(248, 250, 250, 0), #f8fafa);
+  background: -moz-linear-gradient(top, rgba(248, 250, 250, 0), #f8fafa);
+  background: -ms-linear-gradient(top, rgba(248, 250, 250, 0), #f8fafa);
+  background: -o-linear-gradient(top, rgba(248, 250, 250, 0), #f8fafa);
 }
 .md-footer-left,
 .md-footer-right {
@@ -235,8 +235,8 @@ body:after {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 15rem;
   min-height: 60vh;
 }
 .content:before,
@@ -380,7 +380,7 @@ header:after {
 .todo-container {
   display: inline;
   float: left;
-  width: 22.91666667%;
+  width: 31.25%;
   margin: 0 1.04166667%;
   margin-bottom: 1em;
 }
@@ -408,32 +408,45 @@ header:after {
     margin: 0 1.04166667%;
   }
 }
-.todo-container:nth-child(4n+1) {
+.todo-container:nth-child(3n+1) {
   clear: both;
 }
 .md-list-title-wrapper {
   position: relative;
-  padding: .5rem;
-  color: #ffffff;
-  background: #13273a;
+  color: #444444;
+}
+.md-list-title-wrapper:hover .md-list-control {
+  display: block;
 }
 .md-list-title {
-  width: 75%;
+  padding: .5rem;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: .5rem;
   font-family: "Karla", 'Helvetica', 'Arial' sans-serif;
   font-size: 24px;
   line-height: 28.8px;
-  color: #ffffff;
+  color: #444444;
   font-weight: bold;
   text-align: center;
+  -webkit-transition: background 0.3s;
+  -moz-transition: background 0.3s;
+  -ms-transition: background 0.3s;
+  -o-transition: background 0.3s;
+  transition: background 0.3s;
 }
 [contenteditable="true"]:active,
 [contenteditable="true"]:focus {
-  border: none;
+  color: #6a6a6a;
+  padding: .45rem .5rem .5rem;
+  border: 1px solid #dddddd;
+  background: #ffffff;
   outline: none;
+  margin-bottom: .425rem;
 }
 .md-list-control {
+  display: none;
   position: absolute;
   width: 5%;
   top: .8rem;
@@ -442,7 +455,7 @@ header:after {
 }
 .md-list-control:before {
   font-size: 1rem;
-  color: #ffffff;
+  color: #444444;
 }
 .md-list-control.right {
   left: initial;
@@ -463,17 +476,8 @@ header:after {
   height: 100%;
   margin-top: 3rem;
   text-align: center;
-  font-size: 72px;
   cursor: pointer;
   color: #444444;
-  -webkit-transition: opacity 0.1s ease;
-  -moz-transition: opacity 0.1s ease;
-  -ms-transition: opacity 0.1s ease;
-  -o-transition: opacity 0.1s ease;
-  transition: opacity 0.1s ease;
-}
-.md-list-add:hover {
-  opacity: .8;
 }
 .md-list-add[data-list-count="0"] {
   clear: both;
@@ -485,12 +489,13 @@ header:after {
 .md-todo {
   padding: 1rem;
   margin-top: .15rem;
-  margin-bottom: .15rem;
+  margin-bottom: .3rem;
   max-width: 100%;
   border: 1px solid #dddddd;
   border-radius: 2px;
   cursor: move;
   background: #ffffff;
+  box-shadow: 1px 1px 0px 1px #b3b3b3;
   -webkit-transition: transform 0.3s;
   -moz-transition: transform 0.3s;
   -ms-transition: transform 0.3s;
@@ -508,9 +513,10 @@ header:after {
 }
 .md-todo.empty {
   padding: .5em 0;
-  background-color: #faf9f1;
+  background-color: #f8fafa;
   border: none;
   cursor: default;
+  box-shadow: none;
 }
 .md-todo.add-todo {
   padding-bottom: 0;
@@ -589,13 +595,29 @@ textarea.md-todo-text {
   display: inline-block;
   padding: 8px 10px 5px 12px;
   border-radius: 2px;
-  font-family: 'Hammersmith One', Helvetica, Arial, sans-serif;
-  font-size: 20;
+  font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif;
+  font-size: 20px;
   line-height: 1.2;
   letter-spacing: 1px;
   font-weight: bold;
+  font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
+  -webkit-transition: opacity 0.1s ease;
+  -moz-transition: opacity 0.1s ease;
+  -ms-transition: opacity 0.1s ease;
+  -o-transition: opacity 0.1s ease;
+  transition: opacity 0.1s ease;
+}
+.button:hover {
+  opacity: .9;
+}
+.button--logo {
+  font-family: 'Hammersmith One', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 .button--blue {
   background: #13273a;
@@ -613,4 +635,41 @@ textarea.md-todo-text {
   color: #f8fafa;
   box-shadow: 1px 1px 0px 1px #b3b3b3;
   color: #333333;
+}
+.button--green-ui {
+  background: #4e9101;
+  color: #f8fafa;
+  box-shadow: 1px 1px 0px 1px #b3b3b3;
+}
+.button--red-ui {
+  background: #e4031f;
+  color: #f8fafa;
+  box-shadow: 1px 1px 0px 1px #b3b3b3;
+}
+h1 {
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 3rem;
+}
+h3 {
+  font-size: 2.5rem;
+}
+h4 {
+  font-size: 2rem;
+}
+h5 {
+  font-size: 1.5rem;
+}
+h6 {
+  font-size: 1rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  font-weight: bold;
 }

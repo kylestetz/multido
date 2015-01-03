@@ -6,7 +6,9 @@
       <div class="todo-container" data-md-contains="{{ todo._id }}"></div>
     {% endfor %}
   </div>
-  <div class="todo-container md-icon icon-plus-circled md-list-add" data-add-list data-list-count="{{multido.lists.length % 4}}"></div>
+  <div class="todo-container  md-list-add" data-add-list data-list-count="{{multido.lists.length % 4}}">
+    <span class="button button--yellow md-icon icon-plus">Add a New List</span>
+  </div>
   <script id="todo-template" type="text/template">
     {% raw %}
     <div class="md-list">
